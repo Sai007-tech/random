@@ -1,4 +1,4 @@
 echo "Hello"
 echo "$lol" "$vol"
 
-echo "Yoo updated now"
+echod "Yoo updated now"
