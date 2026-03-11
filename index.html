@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IronForge Gym</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #222;
+            background: #0a0a0a;
+        }
+
+        /* Nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: #111;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #e63946;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e63946;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d0000 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #e63946;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #e63946;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #c1121f;
+        }
+
+        /* Features */
+        .features {
+            background: #111;
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: white;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #e63946;
+        }
+
+        .cards {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 40px 30px;
+            width: 220px;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .card:hover {
+            border-color: #e63946;
+            transform: translateY(-5px);
+        }
+
+        .card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Plans */
+        .plans {
+            background: #0a0a0a;
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .plan-cards {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .plan-card {
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 40px 30px;
+            width: 260px;
+        }
+
+        .plan-card.popular {
+            border-color: #e63946;
+            position: relative;
+        }
+
+        .plan-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e63946;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        .plan-card h3 {
+            color: white;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .plan-card .price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #e63946;
+            margin-bottom: 5px;
+        }
+
+        .plan-card .price span {
+            font-size: 1rem;
+            color: #888;
+            font-weight: 400;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .plan-card ul li {
+            color: #aaa;
+            font-size: 0.9rem;
+            padding: 8px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .plan-card ul li::before {
+            content: '✓ ';
+            color: #e63946;
+            font-weight: 700;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 2px solid #e63946;
+            color: #e63946;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover, .plan-card.popular .btn-outline {
+            background: #e63946;
+            color: white;
+        }
+
+        /* Schedule */
+        .schedule {
+            background: #111;
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #e63946;
+            color: white;
+            padding: 15px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 14px 15px;
+            color: #bbb;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        tr:hover td {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        footer span {
+            color: #e63946;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">IRON<span style="color:#fff">FORGE</span></div>
+        <div class="nav-links">
+            <a href="#features">Facilities</a>
+            <a href="#plans">Plans</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Forge Your <span>Best</span> Self</h1>
+        <p>State-of-the-art equipment, expert trainers, and a community that pushes you further. Your transformation starts here.</p>
+        <a href="#plans" class="btn">Join Now</a>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <h2 class="section-title">World-Class <span>Facilities</span></h2>
+        <div class="cards">
+            <div class="card">
+                <div class="icon">🏋️</div>
+                <h3>Free Weights</h3>
+                <p>Over 500+ dumbbells, barbells, and plate-loaded machines.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🚴</div>
+                <h3>Cardio Zone</h3>
+                <p>Treadmills, bikes, rowing machines, and stair climbers.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🥊</div>
+                <h3>Boxing Area</h3>
+                <p>Heavy bags, speed bags, and ring access for sparring.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🧘</div>
+                <h3>Yoga Studio</h3>
+                <p>Dedicated space for yoga, pilates, and recovery sessions.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🍎</div>
+                <h3>Nutrition Bar</h3>
+                <p>Post-workout shakes, protein bars, and healthy snacks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans -->
+    <section class="plans" id="plans">
+        <h2 class="section-title">Membership <span>Plans</span></h2>
+        <div class="plan-cards">
+            <div class="plan-card">
+                <h3>Basic</h3>
+                <div class="price">$29<span>/mo</span></div>
+                <ul>
+                    <li>Gym floor access</li>
+                    <li>Locker room</li>
+                    <li>2 group classes/month</li>
+                    <li>Mobile app access</li>
+                </ul>
+                <a href="#" class="btn-outline">Get Started</a>
+            </div>
+            <div class="plan-card popular">
+                <h3>Pro</h3>
+                <div class="price">$59<span>/mo</span></div>
+                <ul>
+                    <li>Unlimited gym access</li>
+                    <li>Unlimited group classes</li>
+                    <li>1 PT session/month</li>
+                    <li>Nutrition consultation</li>
+                </ul>
+                <a href="#" class="btn-outline">Get Started</a>
+            </div>
+            <div class="plan-card">
+                <h3>Elite</h3>
+                <div class="price">$99<span>/mo</span></div>
+                <ul>
+                    <li>Everything in Pro</li>
+                    <li>4 PT sessions/month</li>
+                    <li>Recovery & spa access</li>
+                    <li>Priority booking</li>
+                </ul>
+                <a href="#" class="btn-outline">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule -->
+    <section class="schedule" id="schedule">
+        <h2 class="section-title">Weekly <span>Schedule</span></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Trainer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CrossFit HIIT</td>
+                    <td>Mon / Wed / Fri</td>
+                    <td>6:00 AM</td>
+                    <td>Marcus R.</td>
+                </tr>
+                <tr>
+                    <td>Yoga Flow</td>
+                    <td>Tue / Thu</td>
+                    <td>7:00 AM</td>
+                    <td>Sara K.</td>
+                </tr>
+                <tr>
+                    <td>Spin Class</td>
+                    <td>Mon / Wed</td>
+                    <td>12:00 PM</td>
+                    <td>Jake L.</td>
+                </tr>
+                <tr>
+                    <td>Boxing Fundamentals</td>
+                    <td>Tue / Sat</td>
+                    <td>5:30 PM</td>
+                    <td>Dana M.</td>
+                </tr>
+                <tr>
+                    <td>Strength & Conditioning</td>
+                    <td>Mon / Thu / Sat</td>
+                    <td>6:30 PM</td>
+                    <td>Chris T.</td>
+                </tr>
+                <tr>
+                    <td>Pilates Core</td>
+                    <td>Wed / Fri</td>
+                    <td>8:00 AM</td>
+                    <td>Nina P.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>123 Iron Street, Fitness City &nbsp;|&nbsp; (555) 987-6543 &nbsp;|&nbsp; hello@ironforge.gym</p>
+        <br>
+        <p>&copy; 2026 <span>IronForge Gym</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
